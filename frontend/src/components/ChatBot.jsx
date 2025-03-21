@@ -9,7 +9,7 @@ function ChatBot() {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-
+  const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
   const handleSendMessage = async () => {
     if (input.trim()) {
       const newMessages = [...messages, { text: input, user: true }];
@@ -19,7 +19,7 @@ function ChatBot() {
       try {
         setLoading(true);
         const response = await axios.post(
-          'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyBwlhWROM8dI_Dk0O25OCBA-fxmkrHK_lM',
+          `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${GEMINI_API_KEY}`,
           {
             contents: [{
               parts: [{
