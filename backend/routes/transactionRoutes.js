@@ -1,6 +1,7 @@
 const express = require("express");
 const Transaction = require("../models/Transaction");
 const Individual = require("../models/Individual");
+const transactionRoutes = require("./routes/transactionRoutes");
 
 const router = express.Router();
 
