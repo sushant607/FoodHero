@@ -4,36 +4,20 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import FaceRecognition from './components/FaceRecognition';
 import Chatbot  from './components/ChatBot';
+import ConfirmButtons from './components/TestOrderConfirm';
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>
       <div className="App">
       <FaceRecognition />
       <Chatbot/>
+      {/* <FaceRecognition /> */}
+      <ConfirmButtons transactionId="67dd9d68d2867db3f7559abe" serverUserId="67dd9d21d2867db3f7559abd" receiverUserId="67dd9c2fd2867db3f7559abc" />
       </div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+     
     </>
   )
 }

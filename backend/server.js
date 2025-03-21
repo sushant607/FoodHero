@@ -1,12 +1,16 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import transactionRoutes from "./routes/transactionRoutes.js";
+import cors from "cors";
 
 dotenv.config(); // Load environment variables
 
 const app = express();
 const port = 5000;
 
+app.use(cors());
+app.use(express.json());
 // Get MongoDB URI from environment variables
 const mongoURI = process.env.MONGO_URL;
 
@@ -25,7 +29,7 @@ async function connectDB() {
 
 // Connect to MongoDB Atlas
 connectDB();
-
+app.use("/api/transactions", transactionRoutes);
 app.get("/", (req, res) => {
     res.send("MongoDB Atlas is connected!");
 });
@@ -33,3 +37,5 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
 });
+
+app.use("/transactions", transactionRoutes);
