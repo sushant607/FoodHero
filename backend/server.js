@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import transactionRoutes from "./routes/transactionsRoutes.js";
+import transactionRoutes from "./routes/transactionRoutes.js";
 dotenv.config(); // Load environment variables
 
 const app = express();
