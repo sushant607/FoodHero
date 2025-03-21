@@ -1,6 +1,6 @@
-const express = require("express");
-const Transaction = require("../models/Transaction");
-const Individual = require("../models/Individual");
+import express from "express";
+import Transaction from "../models/transactions.js"; // Ensure correct file name & extension
+import Individual from "../models/indivisual_users.js"; // Import Individual model
 
 const router = express.Router();
 
@@ -27,7 +27,7 @@ router.post("/confirm/:transactionId", async (req, res) => {
 
     // If both have confirmed, update status to "delivered"
     if (transaction.serverConfirmed && transaction.receiverConfirmed) {
-      transaction.status = "delivered";
+      transaction.status = "Delivered";
 
       // Update individual users
       await Individual.findByIdAndUpdate(transaction.serverUserId, { $inc: { OrdersServed: 1 } });
@@ -42,4 +42,4 @@ router.post("/confirm/:transactionId", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router; // ✅ Correct export for ES Modules
