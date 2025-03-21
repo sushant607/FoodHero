@@ -1,16 +1,18 @@
 import express from "express";
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+
+dotenv.config(); // Load environment variables
 
 const app = express();
 const port = 5000;
 
-// MongoDB Atlas connection URI (Replace <username>, <password>, and <dbname>)
-const uri = "mongodb+srv://sushantbagul607:QNAcpTVHpPglEVLf@cluster0.3nnif.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+// Get MongoDB URI from environment variables
+const mongoURI = process.env.MONGO_URL;
 
-// Connect to MongoDB Atlas
 async function connectDB() {
     try {
-        await mongoose.connect(uri, {
+        await mongoose.connect(mongoURI, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
@@ -21,10 +23,9 @@ async function connectDB() {
     }
 }
 
-// Call the connection function
+// Connect to MongoDB Atlas
 connectDB();
 
-// Sample API endpoint
 app.get("/", (req, res) => {
     res.send("MongoDB Atlas is connected!");
 });
