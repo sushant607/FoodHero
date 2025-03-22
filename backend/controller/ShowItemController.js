@@ -13,6 +13,7 @@ const getListedItems = async (req, res) => {
 
     const formattedItems = items.map((item) => ({
       itemName: item.itemName,
+      listingType:item.listingType,
       description: item.Description,
       quantity: item.quantity,
       cost: item.cost,
@@ -48,6 +49,7 @@ const getItemById = async (req, res) => {
     res.json({
       itemName: item.itemName,
       description: item.Description,
+      listingType:item.listingType,
       quantity: item.quantity,
       cost: item.cost,
       feeds: item.feeds || 1,
