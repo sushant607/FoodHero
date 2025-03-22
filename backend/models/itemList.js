@@ -4,13 +4,18 @@ const { Schema, model } = mongoose;
 
 const listedItemSchema = new Schema(
   {
-    itemId: { type: mongoose.Schema.Types.ObjectId, auto: true },
+    itemId: { 
+      type: mongoose.Schema.Types.ObjectId, 
+      default: function () { return this._id; } // Auto-assign _id to itemId
+    },
     itemName: { type: String, required: true },
     itemType: { type: String, enum: ["Perishable", "Non-Perishable"], required: true },
-    Description : {type: String} ,
+    Description: { type: String },
     quantity: { type: Number, required: true },
     cost: { type: Number, required: true },
-    status: { type: String, enum: ["Not ordered","Pending", "Delivered"], default: "Not ordered" },
+    status: { type: String, enum: ["Not ordered", "Pending", "Delivered"], default: "Not ordered" },
+    
+    // Receiver details
     receiverId: { type: mongoose.Schema.Types.ObjectId, required: false },
     receiverType: { type: String, enum: ["Individual", "Ngo"], required: false },
     receiver: {
@@ -18,6 +23,7 @@ const listedItemSchema = new Schema(
       refPath: "receiverType",
       required: false,
     },
+
     // Listed by (either an Individual or a Kitchen)
     listedById: { type: mongoose.Schema.Types.ObjectId, required: true },
     listedByType: { type: String, enum: ["Individual", "Kitchen"], required: true },
@@ -25,6 +31,25 @@ const listedItemSchema = new Schema(
       type: mongoose.Schema.Types.ObjectId,
       refPath: "listedByType",
       required: true,
+    },
+
+    // Contact & Address (Fetched dynamically from Individual or Kitchen)
+    contact: {
+      type: String,
+      required: true, // Ensure it exists in the referenced schema
+    },
+    feeds: { type: Number, default: 1 },
+    address: {
+      type: String,
+      required: true,
+    },
+
+    // Ratings (1-5 scale)
+    ratings: {
+      type: Number,
+      min: 1,
+      max: 5,
+      default: 3, // Neutral default rating
     },
 
     // Expiry settings based on item type
