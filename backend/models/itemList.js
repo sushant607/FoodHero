@@ -8,6 +8,7 @@ const listedItemSchema = new Schema(
       type: mongoose.Schema.Types.ObjectId, 
       default: function () { return this._id; } // Auto-assign _id to itemId
     },
+    listingType:{type:String, enum: ["Donation", "Marketplace"], required: true},
     itemName: { type: String, required: true },
     itemType: { type: String, enum: ["Perishable", "Non-Perishable"], required: true },
     Description: { type: String },
