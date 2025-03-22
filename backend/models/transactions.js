@@ -9,7 +9,8 @@ const transactionSchema = new Schema({
   status: { type: String, enum: ["Pending", "Delivered"], default: "Pending" },
   serverConfirmed: { type: Boolean, default: false },
   receiverConfirmed: { type: Boolean, default: false },
-});
+  itemId: {type: Schema.Types.ObjectId, ref: "ListedItem", required: true }
+}); 
 
 const Transaction = model("Transaction", transactionSchema);
 export default Transaction;
