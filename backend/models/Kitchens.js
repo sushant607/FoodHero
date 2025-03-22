@@ -9,22 +9,14 @@ const kitchenSchema = new Schema(
       unique: true, // Ensures FSSAI ID is unique
       required: true,
     },
+    contact: {type:Number , required: true},
     password: {
       type: String,
       required: true,
     },
-    foodAvailableFor: {
-      type: Number,
-      default: null, // Optional field
-    },
     location: {
       type: String,
       required: true,
-    },
-    menu: {
-      type: Map, // Represents a dictionary (food name → cost)
-      of: Number, // Example: { "Rice": 50, "Dal": 30 }
-      default: {}, // Optional field
     },
     ordersServed: {
       type: Number,

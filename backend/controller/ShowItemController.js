@@ -6,6 +6,7 @@ import ListedItem from "../models/itemList.js";
  * @route GET /api/itemlist/donations
  * @access Public
  */
+
 const getDonationItems = async (req, res) => {
   try {
     const items = await ListedItem.find({ listingType: { $regex: /^donations$/i } }) // Case-insensitive match
