@@ -51,7 +51,7 @@ function PriceAI({ query, onPriceFetched }) {
       })
       .join("\n");
 
-    const prompt = `User query: "${query}".\nHere are 5 matching food items from our database:\n${matchList}\n\nPlease find the best match among these items and return only the recommended resale price (in integers) for that item. If you don't find anything accurate, return the cheapest product. Only respond with ₹ amount.`;
+    const prompt = `User query: "${query}".\n ANSWER ONLY IN ONE WORD. Here are matching food items from our database:\n${matchList}\n\nPlease find the best match among these items and return only the recommended resale price (in integers) for that item. If you don't find anything accurate, return the cheapest product. Only respond with one word ₹ + amount.`;
 
     try {
       const response = await axios.post(
