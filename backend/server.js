@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import transactionRoutes from "./routes/transactionRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
 dotenv.config(); // Load environment variables
 
 const app = express();
@@ -26,6 +27,7 @@ async function connectDB() {
 // Connect to MongoDB Atlas
 connectDB();
 app.use("/api/transactions", transactionRoutes);
+app.use("/api",authRoutes);
 app.get("/", (req, res) => {
     res.send("MongoDB Atlas is connected!");
 });
