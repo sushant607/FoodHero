@@ -39,9 +39,7 @@ function PageOne() {
       <div className="bg-white shadow-lg rounded-lg p-6 w-96">
         <h2 className="text-lg font-semibold mb-4">Upload Item & Get Suggested Price</h2>
 
-        {/* File Upload */}
-        <input type="file" accept="image/*" onChange={handleFileChange} className="mb-4" />
-
+        
         {/* Item Name */}
         <input
           type="text"
@@ -69,13 +67,7 @@ function PageOne() {
           onChange={(e) => setDescription(e.target.value)}
         ></textarea>
 
-        {/* Display Selected Image */}
-        {image && (
-          <div className="mb-4">
-            <p className="text-sm text-gray-500">Selected Image:</p>
-            <img src={URL.createObjectURL(image)} alt="Uploaded preview" className="w-32 h-32 object-cover rounded" />
-          </div>
-        )}
+        
       </div>
 
       {/* Suggested Price */}
